@@ -24,12 +24,27 @@ Route::get('/medicines', [MedicineController::class, 'index']);
 
 // Show By one (Medicine Card) 
 Route::get('/medicines/{medicines}', [MedicineController::class, 'show']);
-
+    
 // Show By Categories (Filtering)
 Route::get('/medicines/search/{category}', [MedicineController::class, 'search']);
 
+// useres api 
+// to register
+Route::post('/users/register', [AuthController::class, 'register']);
+// to login 
+Route::post('/users/login', [AuthController::class, 'login']);
+//to logout
+Route::post('/users/logout', [AuthController::class, 'logout']);
+
+
+
+
+
 
 // protected for store user
+// group what can store do 
+Route::group((['middleware'=>['auth:sanctum']]),function(){
+
 // To Create New Medicine :: Used By Admin  
 Route::post('/medicines', [MedicineController::class, 'store']);
 
@@ -40,6 +55,7 @@ Route::put('/medicines/{medicine}', [MedicineController::class, 'update']);
 Route::delete('/medicines/{medicine}', [MedicineController::class, 'destroy']);
 
 
+});
 
 // User Routes 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
