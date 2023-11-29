@@ -18,19 +18,26 @@ require __DIR__ . '/auth.php';
 |
 */
 
-// Medicine Routes
-
+// Medicine Routes for public 
 // Return All Medicines from Database 
 Route::get('/medicines', [MedicineController::class, 'index']);
-// To Create New Medicine :: Used By Admin  
-Route::post('/medicines', [MedicineController::class, 'store']);
-// To Edit Medicine :: Used By Admin
-Route::put('/medicines/{medicine}', [MedicineController::class, 'update']);
-// To Delete Medicine :: Used By Admin
-Route::delete('/medicines/{medicine}', [MedicineController::class, 'destroy']);
-// Show By Categories (Filtering)
 
 // Show By one (Medicine Card) 
+Route::get('/medicines/{medicines}', [MedicineController::class, 'show']);
+
+// Show By Categories (Filtering)
+Route::get('/medicines/search/{category}', [MedicineController::class, 'search']);
+
+
+// protected for store user
+// To Create New Medicine :: Used By Admin  
+Route::post('/medicines', [MedicineController::class, 'store']);
+
+// To Edit Medicine :: Used By Admin
+Route::put('/medicines/{medicine}', [MedicineController::class, 'update']);
+
+// To Delete Medicine :: Used By Admin
+Route::delete('/medicines/{medicine}', [MedicineController::class, 'destroy']);
 
 
 
@@ -39,7 +46,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
     return $request->user();
 });
-
-
 
 // Order Routes
