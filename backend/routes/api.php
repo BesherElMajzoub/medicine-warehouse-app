@@ -30,11 +30,11 @@ Route::get('/medicines/search/{category}', [MedicineController::class, 'search']
 
 // useres api 
 // to register
-Route::post('/users/register', [AuthController::class, 'register']);
+// Route::post('/users/register', [AuthController::class, 'register']);
 // to login 
-Route::post('/users/login', [AuthController::class, 'login']);
+// Route::post('/users/login', [AuthController::class, 'login']);
 //to logout
-Route::post('/users/logout', [AuthController::class, 'logout']);
+// Route::post('/users/logout', [AuthController::class, 'logout']);
 
 
 
